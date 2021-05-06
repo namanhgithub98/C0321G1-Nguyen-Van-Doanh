@@ -1,4 +1,4 @@
-package bai1_introduction_to_java.thuc_hanh;
+package bai2_loop.thuc_hanh;
 
 import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
