@@ -48,7 +48,6 @@ public class Circle {
     public static void main(String[] args) {
         Circle circle = new Circle(2, "green");
         System.out.print(circle);
-
-        }
+    }
 }
 
