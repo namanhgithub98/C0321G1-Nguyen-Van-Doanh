@@ -1,22 +1,25 @@
 package bai11_generic_stack_queue.bai_tap.bai1_dao_ptu_so_nguyen;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class DaoNguocMangSoNguyen {
     public static void main(String[] args) {
-        Stack<Integer> array = new Stack<>();
-        for (int i = 1; i < 10; i++) {
-            array.push(i);
-        }
-        System.out.println("Mảng ban đầu là: " + array);
 
-        Stack<Integer> arrayReverse = new Stack<>();
-        for (int i : array) {
-            arrayReverse.push(i);
+        Stack<Integer> stack = new Stack<>();
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int size = array.length;
+
+        for (int i = 0; i < size; i++) {
+            stack.push(array[i]);
         }
-        for (int i = 0; i < array.size(); i++) {
-            array.set(i, arrayReverse.pop());
+        System.out.println(stack);
+        int[] reverseArray = new int[size];
+        for (int i = 0; i < size; i++) {
+            reverseArray[i] = stack.pop();
         }
-        System.out.println("Mảng sau khi đảo ngược là: " + array);
+        System.out.println("Mảng sao khi đảo: " + Arrays.toString(reverseArray));
+
+
     }
 }
