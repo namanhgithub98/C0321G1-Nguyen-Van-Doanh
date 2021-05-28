@@ -14,6 +14,7 @@ public class Main {
         c = scanner.nextInt();
 
         Triangle testTriangle = new Triangle(a,b,c) ;
+        System.out.println(testTriangle);
 
     }
 }
