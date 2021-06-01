@@ -12,7 +12,8 @@ public class House extends Service {
         this.tienNghiKhac=tienNghiKhac;
         this.SoTang=soTang;
     }
-    public House(String id, String tenDichVu, String dienTichSD, String chiPhiThue, String soNguoiTD, String kieuThue, String tieuChuanPhong,String tienNghiKhac,String soTang) {
+    public House(String id, String tenDichVu, String dienTichSD, String chiPhiThue, String soNguoiTD, String kieuThue,
+                 String tieuChuanPhong,String tienNghiKhac,String soTang) {
         super(id, tenDichVu, dienTichSD, chiPhiThue, soNguoiTD, kieuThue);
         this.tieuChuanPhong=tieuChuanPhong;
         this.tienNghiKhac=tienNghiKhac;
@@ -38,7 +39,7 @@ public class House extends Service {
     }
 
     public void setSoTang(String soTang) {
-        SoTang = soTang;
+        this.SoTang = soTang;
     }
 
 
@@ -49,6 +50,16 @@ public class House extends Service {
                 ", Tiêu Chuẩn Phòng = '" + tieuChuanPhong + '\'' +
                 ", Tiện Nghi Khác = '" + tienNghiKhac + '\'' +
                 ", Số Tầng = '" + SoTang + '\'' +
+                '}';
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                super.toString()+","+ '\'' +
+                "tieuChuanPhong='" + tieuChuanPhong + '\'' +
+                ", tienNghiKhac='" + tienNghiKhac + '\'' +
+                ", SoTang='" + SoTang + '\'' +
                 '}';
     }
 }

@@ -1,6 +1,8 @@
 package cammon;
 
 import modle.Customer;
+import modle.House;
+import modle.Room;
 import modle.Villa;
 
 import javax.crypto.Cipher;
@@ -55,6 +57,7 @@ public class FuncWriteRead {
             System.out.println("Lỗi");
         }
     }
+    // Đọc FileVilla
     public static void writeVillaCSV(List<Villa> villaList) {
         FileWriter fileWriter =null;
         BufferedWriter bufferedWriter =null;
@@ -72,6 +75,8 @@ public class FuncWriteRead {
             e.printStackTrace();
         }
     }
+
+    // Ghi FileVilla
     public static List<Villa> readVillaCSV() {
         List<Villa> villaList = new ArrayList<>();
         FileReader fileReader =null;
@@ -93,4 +98,93 @@ public class FuncWriteRead {
         }
         return villaList;
     }
+
+    // Đọc FileHouse
+    public static void writeHouseCSV(List<House> houseList) {
+        FileWriter fileWriter = null;
+        BufferedWriter bufferedWriter = null;
+        try {
+            fileWriter = new FileWriter("src\\data\\house.csv", true);
+            bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (House house : houseList) {
+                bufferedWriter.write(house.getId() + "," + house.getTenDichVu() + "," + house.getDienTichSD() + "," + house.getChiPhiThue() + ","
+                        + house.getSoNguoiTD() + "," + house.getKieuThue() + "," + house.getTieuChuanPhong() + "," + house.getTienNghiKhac() + ","
+                        + house.getSoTang());
+
+            }
+            bufferedWriter.write("\n");
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Ghi FileHouse
+    public static List<House> readHoueseCSV() {
+        List<House> houseList = new ArrayList<>();
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
+        try {
+            fileReader = new FileReader("src\\data\\house.csv");
+            bufferedReader = new BufferedReader(fileReader);
+            String line = null;
+            String[] arr = null;
+            House house = null;
+            while ((line = bufferedReader.readLine()) != null) {
+                arr = line.split(",");
+                house = new House(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8]);
+                houseList.add(house);
+            }
+            bufferedReader.close();
+            fileReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return houseList;
+    }
+
+    // Đọc FileRoom
+    public static void writeRoomCSV(List<Room> roomList) {
+        FileWriter fileWriter = null;
+        BufferedWriter bufferedWriter = null;
+        try {
+            fileWriter = new FileWriter("src\\data\\room.csv", true);
+            bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (Room room : roomList) {
+                bufferedWriter.write(room.getId() + "," + room.getTenDichVu() + "," + room.getDienTichSD() + ","
+                        + room.getChiPhiThue() + "," + room.getSoNguoiTD() + "," + room.getKieuThue() +"," + room.getDvMienPhi());
+
+            }
+            bufferedWriter.write("\n");
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    // Ghi FileRoom
+    public static List<Room> readRoomCSV() {
+        List<Room> roomList = new ArrayList<>();
+        FileReader fileReader =null;
+        BufferedReader bufferedReader =null;
+        try {
+            fileReader = new FileReader("src\\data\\room.csv");
+            bufferedReader = new BufferedReader(fileReader);
+            String line =null;
+            String[] arr =null;
+            Villa villa = null;
+            while ((line=bufferedReader.readLine())!=null){
+                arr = line.split(",");
+                Room room = new Room(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6]);
+                roomList.add(room);
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return roomList;
+    }
+
 }

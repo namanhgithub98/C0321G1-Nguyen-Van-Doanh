@@ -22,15 +22,6 @@ public class Villa extends Service {
         this.dtHoBoi = dtHoBoi;
         this.soTang = soTang;
     }
-    //
-//    public Villa(String id, String tenDichVu, String dienTichSD, String chiPhiThue, String soNguoiTD, String kieuThue, String tieuChuanPhong,String tienNghiKhac,String dtHoBoi,String soTang) {
-//        super(id, tenDichVu, dienTichSD, chiPhiThue, soNguoiTD, kieuThue);
-//        this.tieuChuanPhong=tieuChuanPhong;
-//        this.tienNghiKhac=tienNghiKhac;
-//        this.dtHoBoi = dtHoBoi;
-//        this.soTang =soTang;
-//    }
-
 
     public String getSHoBoi() {
         return dtHoBoi;
@@ -77,7 +68,7 @@ public class Villa extends Service {
     @Override
     public String toString() {
         return "Villa{" +
-                super.toString()+","+
+                super.toString()+","+ '\'' +
                 "tieuChuanPhong='" + tieuChuanPhong + '\'' +
                 ", tienNghiKhac='" + tienNghiKhac + '\'' +
                 ", dtHoBoi='" + dtHoBoi + '\'' +

@@ -33,11 +33,11 @@ public class ManagerService {
                     count++;
                     break;
                 case 2:
-//                    ManagerHouse.addHouse();
+                    addHouse();
                     count++;
                     break;
                 case 3:
-//                    ManagerRoom.addRoom();
+                    addRoom();
                     count++;
                     break;
                 case 4:
@@ -81,15 +81,60 @@ public class ManagerService {
         list.add(villa);
         FuncWriteRead.writeVillaCSV(list);
     }
-    public void addHouse () {
+    public static void addHouse() {
 //            String tieuChuanPhong = scanner.nextLine();
 //            String tienNghiKhac = scanner.nextLine();
 //            String soTang = scanner.nextLine();
 //            House house = new House(tieuChuanPhong, tienNghiKhac, soTang);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập id: ");
+        String id = scanner.nextLine();
+        System.out.println("Nhập tên dịch vụ: ");
+        String tenDichVu = scanner.nextLine();
+        System.out.println("Nhập dien tích sử dụng: ");
+        String dienTichSD = scanner.nextLine();
+        System.out.println("Nhập chi phí thuê: ");
+        String chiPhiThue = scanner.nextLine();
+        System.out.println("Nhập số người tối đa: ");
+        String soNguoiTD = scanner.nextLine();
+        System.out.println("Nhập kiểu thuê: ");
+        String kieuThue = scanner.nextLine();
+        System.out.println("Nhập tiêu chuẩn phòng: ");
+        String tieuChuanPhong = scanner.nextLine();
+        System.out.println("Nhập tiện nghi khác: ");
+        String tienNghiKhac = scanner.nextLine();
+        System.out.println("Nhập số tầng: ");
+        String soTang = scanner.nextLine();
+        System.out.println("ok");
+        House house = new House(id, tenDichVu, dienTichSD, chiPhiThue, soNguoiTD, kieuThue, tieuChuanPhong, tienNghiKhac,
+              soTang);
+        List<House> list = new  ArrayList();
+        list.add(house);
+        FuncWriteRead.writeHouseCSV(list);
     }
-    public void addRoom () {
+    public static void addRoom() {
 //            String DvMienPhi = scanner.nextLine();
 //            Room room = new Room(DvMienPhi);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập id: ");
+        String id = scanner.nextLine();
+        System.out.println("Nhập tên dịch vụ: ");
+        String tenDichVu = scanner.nextLine();
+        System.out.println("Nhập dien tích sử dụng: ");
+        String dienTichSD = scanner.nextLine();
+        System.out.println("Nhập chi phí thuê: ");
+        String chiPhiThue = scanner.nextLine();
+        System.out.println("Nhập số người tối đa: ");
+        String soNguoiTD = scanner.nextLine();
+        System.out.println("Nhập kiểu thuê: ");
+        String kieuThue = scanner.nextLine();
+        System.out.println("Nhập dịch vụ miễn phí: ");
+        String dvMienPhi = scanner.nextLine();
+        System.out.println("ok");
+        Room room = new Room(id, tenDichVu, dienTichSD, chiPhiThue, soNguoiTD, kieuThue, tenDichVu);
+        List<Room> list = new  ArrayList();
+        list.add(room);
+        FuncWriteRead.writeRoomCSV(list);
     }
 
 
@@ -111,11 +156,11 @@ public class ManagerService {
                     count++;
                     break;
                 case 2:
-//                    ManagerHouse.addHouse();
+                    showHouse();
                     count++;
                     break;
                 case 3:
-//                    ManagerRoom.addRoom();
+                    showRoom();
                     count++;
                     break;
                 case 4:
@@ -137,5 +182,18 @@ public class ManagerService {
         }
     }
 
+    private static void showHouse() {
+        List<House> list = FuncWriteRead.readHoueseCSV();
+        for (House house: list) {
+            System.out.println(house.toString());
+        }
+    }
+
+    private static void showRoom() {
+        List<Room> list = FuncWriteRead.readRoomCSV();
+        for (Room room: list) {
+            System.out.println(room.toString());
+        }
+    }
 
 }
