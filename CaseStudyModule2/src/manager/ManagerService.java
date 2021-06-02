@@ -1,6 +1,7 @@
 package manager;
 
 import cammon.FuncWriteRead;
+import cammon.Validate;
 import modle.House;
 import modle.Room;
 import modle.Villa;
@@ -41,9 +42,10 @@ public class ManagerService {
                     count++;
                     break;
                 case 4:
+//                    backToMenu();
                     break;
                 case 5:
-                    count++;
+
                     break;
                 default:
                     count++;
@@ -52,28 +54,108 @@ public class ManagerService {
             }
         }
     }
+    // **********************************  addVilla  ************************************************
     public static void addVilla () {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập id: ");
-        String id = scanner.nextLine();
-        System.out.println("Nhập tên dịch vụ: ");
-        String tenDichVu = scanner.nextLine();
-        System.out.println("Nhập dien tích sử dụng: ");
-        String dienTichSD = scanner.nextLine();
-        System.out.println("Nhập chi phí thuê: ");
-        String chiPhiThue = scanner.nextLine();
-        System.out.println("Nhập số người tối đa: ");
-        String soNguoiTD = scanner.nextLine();
-        System.out.println("Nhập kiểu thuê: ");
-        String kieuThue = scanner.nextLine();
+        String id = null;
+        do {
+            System.out.println("\tNhập id: ");
+             id = scanner.nextLine();
+            if (Validate.validateId(id, "villa")) {
+                break;
+            } else {
+                System.err.println("Sai định dạng!!! Yêu cầu nhập lại:");
+            }
+        } while (true);
+
+
+        String tenDichVu = null;
+        do {
+            System.out.print("\tTên dịch vụ: ");
+            tenDichVu = scanner.nextLine();
+            Validate validate =  new Validate();
+            if (!validate.validateServiceName(tenDichVu)) {
+                System.err.println("LỖI: Định dạng Tên Dịch Vụ không hợp lệ");
+                continue;
+            }
+            break;
+        } while (true);
+
+        String dienTichSD = null;
+        do {
+            System.out.print("\tDiện tích sử dụng (m2): ");
+            dienTichSD = (scanner.nextLine());
+            Validate validate = new Validate();
+            if (!validate.validateArea(dienTichSD)) {
+                System.err.println("LỖI: Diện Tích Sử Dụng phải lớn hơn 30 (m2)");
+                continue;
+            }
+            break;
+        } while (true);
+
+        String chiPhiThue = null;
+        do {
+            System.out.print("\tNhập chi phí thuê ");
+            chiPhiThue = (scanner.nextLine());
+            Validate validate = new Validate();
+            if (!validate.validatePrice(chiPhiThue)) {
+                System.err.println("LỖI: Giá Tiền không hợp lệ");
+                continue;
+            }
+            break;
+        } while (true);
+
+        String soNguoiTD = null;
+        do {
+            System.out.print("\tSố người tối đa: ");
+            soNguoiTD = (scanner.nextLine());
+            Validate validate =  new Validate();
+            if (!validate.validateMaxPeople(soNguoiTD)) {
+                System.err.println("LỖI: Số Người Tối Đa phải lớn hơn 0 và bé hơn 20");
+                continue;
+            }
+            break;
+        } while (true);
+
+        String kieuThue = null;
+        do {
+            System.out.print("\tNhập kiểu thuê: ");
+            kieuThue = scanner.nextLine();
+            Validate validate =  new Validate();
+            if (!validate.validateRentleType(kieuThue)) {
+                System.err.println("LỖI: Định dạng Kiểu thuê không hợp lệ");
+                continue;
+            }
+            break;
+        } while (true);
         System.out.println("Nhập tiêu chuẩn phòng: ");
         String tieuChuanPhong = scanner.nextLine();
         System.out.println("Nhập tiện nghi khác: ");
         String tienNghiKhac = scanner.nextLine();
-        System.out.println("Nhập diện tích hồ bơi: ");
-        String dienTichHoBoi = scanner.nextLine();
-        System.out.println("Nhập số tầng: ");
-        String soTang = scanner.nextLine();
+
+        String dienTichHoBoi = null;
+        do {
+            System.out.print("\tDiện tích Hồ bơi (m2): ");
+            dienTichHoBoi  =(scanner.nextLine());
+            Validate validate = new Validate();
+            if (!validate.validateSwimmingPool(dienTichHoBoi)) {
+                System.err.println("LỖI: Diện Tích Hồ bơi phải lớn hơn 30 (m2)");
+                continue;
+            }
+            break;
+        } while (true);
+
+        String soTang = null;
+        do {
+            System.out.print("\tSố tầng: ");
+            soTang = (scanner.nextLine());
+            Validate validate = new Validate();
+            if (!validate.validateFloors(soTang)) {
+                System.err.println("Lỗi!!! Số tầng phải lớn hơn 0:");
+                continue;
+            }
+            break;
+        } while (true);
         System.out.println("ok");
         Villa villa = new Villa(id, tenDichVu, dienTichSD, chiPhiThue, soNguoiTD, kieuThue, tieuChuanPhong, tienNghiKhac,
                 dienTichHoBoi, soTang);
@@ -81,14 +163,22 @@ public class ManagerService {
         list.add(villa);
         FuncWriteRead.writeVillaCSV(list);
     }
+
+
+    // **********************************  addHouse   ************************************************
     public static void addHouse() {
-//            String tieuChuanPhong = scanner.nextLine();
-//            String tienNghiKhac = scanner.nextLine();
-//            String soTang = scanner.nextLine();
-//            House house = new House(tieuChuanPhong, tienNghiKhac, soTang);
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập id: ");
-        String id = scanner.nextLine();
+//
+        String id = null;
+        do {
+            System.out.println("Nhập id: ");
+            id = scanner.nextLine();
+            if (Validate.validateId(id, "house")) {
+                break;
+            } else {
+                System.out.println("Sai định dạng!!! Yêu cầu nhập lại:");
+            }
+        } while (true);
         System.out.println("Nhập tên dịch vụ: ");
         String tenDichVu = scanner.nextLine();
         System.out.println("Nhập dien tích sử dụng: ");
@@ -112,12 +202,22 @@ public class ManagerService {
         list.add(house);
         FuncWriteRead.writeHouseCSV(list);
     }
+
+    // **********************************  addRoom  ************************************************
     public static void addRoom() {
-//            String DvMienPhi = scanner.nextLine();
-//            Room room = new Room(DvMienPhi);
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập id: ");
-        String id = scanner.nextLine();
+//        System.out.println("Nhập id: ");
+//        String id = scanner.nextLine();
+        String id = null;
+        do {
+            System.out.println("Nhập id: ");
+            id = scanner.nextLine();
+            if (Validate.validateId(id, "room")) {
+                break;
+            } else {
+                System.out.println("Sai định dạng!!! Yêu cầu nhập lại:");
+            }
+        } while (true);
         System.out.println("Nhập tên dịch vụ: ");
         String tenDichVu = scanner.nextLine();
         System.out.println("Nhập dien tích sử dụng: ");
@@ -139,61 +239,76 @@ public class ManagerService {
 
 
 
-    public static void showServices() {
-        Scanner scanner = new Scanner(System.in);
-        int count = 0;
-        while (count < 1) {
-            System.out.println("Please enter your choice :\n" +
-                    "1.\tShow New Villa\n" +
-                    "2.\tShow New House\n" +
-                    "3.\tShow New Room\n" +
-                    "4.\tBack to menu\n" +
-                    "5.\tExit\n");
-            int choose = Integer.parseInt(scanner.nextLine());
-            switch (choose) {
-                case 1:
-                    showVilla();
-                    count++;
-                    break;
-                case 2:
-                    showHouse();
-                    count++;
-                    break;
-                case 3:
-                    showRoom();
-                    count++;
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    count++;
-                    break;
-                default:
-                    count++;
-                    System.out.println("There is no option");
-                    break;
-            }
+public static void showServices() {
+    Scanner scanner = new Scanner(System.in);
+    int count = 0;
+    while (count < 1) {
+        System.out.println("Please enter your choice :\n" +
+                "1.\tShow All Villa\n" +
+                "2.\tShow All House\n" +
+                "3.\tShow All Room\n" +
+                "4.\tShow All Name Villa Not Duplicate\n" +
+                "5.\tShow All Name House Not Duplicate\n" +
+                "6.\tShow All Name Name Not Duplicate\n" +
+                "7.\tBack to menu\n" +
+                "8.\tExit\n");
+        int choose = Integer.parseInt(scanner.nextLine());
+        switch (choose) {
+            case 1:
+                showAllVilla();
+                count++;
+                break;
+            case 2:
+                showAllHouse();
+                count++;
+                break;
+            case 3:
+                showAllRoom();
+                count++;
+                break;
+            case 4:
+                showAllNameVillaNotDuplicate();
+                break;
+            case 5:
+                count++;
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            default:
+                count++;
+                System.out.println("There is no option");
+                break;
         }
     }
-    private static void showVilla() {
+}
+
+
+
+    private static void showAllVilla() {
         List<Villa> list = FuncWriteRead.readVillaCSV();
         for (Villa villa: list) {
             System.out.println(villa.toString());
         }
     }
 
-    private static void showHouse() {
+    private static void showAllRoom() {
+        List<Room> list = FuncWriteRead.readRoomCSV();
+        for (Room room: list) {
+            System.out.println(room.toString());
+        }
+    }
+    
+    private static void showAllHouse() {
         List<House> list = FuncWriteRead.readHoueseCSV();
         for (House house: list) {
             System.out.println(house.toString());
         }
     }
 
-    private static void showRoom() {
-        List<Room> list = FuncWriteRead.readRoomCSV();
-        for (Room room: list) {
-            System.out.println(room.toString());
-        }
+    private static void showAllNameVillaNotDuplicate() {
     }
-
 }
