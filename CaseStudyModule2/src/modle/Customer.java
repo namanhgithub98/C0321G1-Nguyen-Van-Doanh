@@ -5,26 +5,25 @@ public class Customer {
     private String name;
     private String birthday;
     private String gender;
-    private String id;
+    private String idCard;
     private String telephone;
     private String email;
-    private String level;
-    private String address;
     private String service;
+    private String address;
+
 
     public Customer() {
     }
 
-    public Customer(String name,String birthday,String gender,String sCMND,String telephone, String email,String level,String address,String service) {
+    public Customer(String name, String birthday, String gender, String idCard, String telephone, String email, String address, String service) {
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
-        this.id= id;
+        this.idCard = idCard;
         this.telephone = telephone;
         this.email = email;
-        this.level = level;
-        this.address = address;
         this.service = service;
+        this.address = address;
     }
 
     public String getName() {
@@ -56,11 +55,11 @@ public class Customer {
     }
 
     public String getId() {
-        return id;
+        return idCard;
     }
 
     public Customer setsCMND(String id) {
-        this.id = id;
+        this.idCard = idCard;
         return this;
     }
 
@@ -83,13 +82,14 @@ public class Customer {
         return this;
     }
 
-    public String getLevel() {
 
-        return level;
+
+    public String getService() {
+        return service;
     }
 
-    public Customer setLevel(String level) {
-        this.level = level;
+    public Customer setService(String service) {
+        this.service = service;
         return this;
     }
 
@@ -102,26 +102,21 @@ public class Customer {
         return this;
     }
 
-    public String getService() {
-        return service;
+    public void showInfor() {
+        System.out.println(this.toString());
     }
 
-    public Customer setService(String service) {
-        this.service = service;
-        return this;
-    }
-
-    public String showInfor(){
-        return "Customer { " +
-                " Name : '" + name + '\'' +
-                ", Birthday : '" + birthday + '\'' +
-                ", Gender : '" + gender + '\'' +
-                ", CMND : '" + id + '\'' +
-                ", Telephone : '" + telephone + '\'' +
-                ", Email : '" + email + '\'' +
-                ", Level : '" + level + '\'' +
-                ", Address : '" + address + '\'' +
-                ", Service : '" + service + '\'' +
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", gender='" + gender + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                ", service='" + service + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package controllers;
 
+import manager.ManagerCustomer;
 import manager.ManagerService;
 import modle.House;
 import modle.Room;
@@ -8,8 +9,19 @@ import modle.Villa;
 import java.util.Scanner;
 
 public class MainController {
-//    static ManagerService managerService = new ManagerService();
+    //    static ManagerService managerService = new ManagerService();
 //    Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
+    private static boolean isExit;
+    private static String VILLA = "villa";
+    private static String HOUSE = "house";
+    private static String ROOM = "room";
+    private static String CUSTOMER = "customer";
+    private static boolean isBackToMenu;
+
+//    public static void main(String[] args) {
+//        MainController.displayMainMenu();
+//    }
 
     public static void displayMainMenu() {
         int count = 0;
@@ -26,21 +38,25 @@ public class MainController {
             int chooseService = Integer.parseInt(scanner.nextLine());
             switch (chooseService) {
                 case 1:
-                ManagerService.addNewServies();
+                    ManagerService.addNewServies();
                     break;
                 case 2:
-                ManagerService.showServices();
+                    ManagerService.showServices();
                     break;
                 case 3:
-//                addNewCustomer();
+                    ManagerCustomer.addNewCustomer();
                     break;
                 case 4:
+                    ManagerCustomer.showInformationCustomers();
                     break;
                 case 5:
+//                    Add New Booking
                     break;
                 case 6:
+//                    Show Information of Employee
                     break;
                 case 7:
+//                    Exit
                     break;
                 default:
                     System.out.println("There is no option");
@@ -49,37 +65,4 @@ public class MainController {
         }
     }
 }
-//    public void addNewServies() {
-//        Scanner input = new Scanner(System.in);
-//        int count =0;
-//        while (count<1) {
-//            System.out.println("Please enter your choice :" +
-//                    "1.\tAdd New Villa\n" +
-//                    "2.\tAdd New House\n" +
-//                    "3.\tAdd New Room\n" +
-//                    "4.\tBack to menu\n" +
-//                    "5.\tExit\n");
-//            int choose = Integer.parseInt(scanner.nextLine());
-//            switch (choose) {
-//                case 1:
-//                    managerService.addVilla();
-//                    break;
-//                case 2:
-//                    managerService.addHouse();
-//                    break;
-//                case 3:
-//                    managerService.addRoom();
-//                    break;
-//                case 4:
-//                    break;
-//                case 5:
-//                    count++;
-//                    break;
-//                default:
-//                    count++;
-//                    System.out.println("There is no option");
-//                    break;
-//            }
-//        }
-//    }
 

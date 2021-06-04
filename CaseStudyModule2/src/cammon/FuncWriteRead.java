@@ -187,4 +187,48 @@ public class FuncWriteRead {
         return roomList;
     }
 
+    // Đọc FileCustomer
+    public static void writeCustomerCSV(List<Customer> customerList) {
+        FileWriter fileWriter = null;
+        BufferedWriter bufferedWriter = null;
+        try {
+            fileWriter = new FileWriter("src\\data\\customer.csv", true);
+            bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (Customer customer : customerList) {
+                bufferedWriter.write(customer.getName() + "," + customer.getBirthday() + ","
+                        + customer.getGender() + "," + customer.getId() + "," + customer.getTelephone() + ","
+                        + customer.getEmail() +"," + customer.getService() + "," + customer.getAddress());
+
+            }
+            bufferedWriter.write("\n");
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Ghi FileCustomer
+    public static List<Customer> readCustomerCSV() {
+        List<Customer> customerList = new ArrayList<>();
+        FileReader fileReader =null;
+        BufferedReader bufferedReader =null;
+        try {
+            fileReader = new FileReader("src\\data\\customer.csv");
+            bufferedReader = new BufferedReader(fileReader);
+            String line =null;
+            String[] arr =null;
+            Villa villa = null;
+            while ((line=bufferedReader.readLine())!=null){
+                arr = line.split(",");
+                Customer customer = new Customer(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7]);
+                customerList.add(customer);
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return customerList;
+    }
+
 }

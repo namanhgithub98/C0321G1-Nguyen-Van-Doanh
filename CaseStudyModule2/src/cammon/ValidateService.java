@@ -3,7 +3,7 @@ package cammon;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validate {
+public class ValidateService {
 
 
     //Mã dịch vụ
@@ -73,6 +73,12 @@ public class Validate {
         String regexString = "^[A-Z][a-z]*[0-9]*$";
         return Pattern.matches(regexString, str);
     }
+    //Tiêu chuẩn Phòng
+    public static boolean validateRoomStandard(String str) {
+        String regexString = "^[A-Z][a-z]*[0-9]*$";
+        return Pattern.matches(regexString, str);
+    }
+
 
     // Số tầng
     public static boolean validateFloors(String str) {

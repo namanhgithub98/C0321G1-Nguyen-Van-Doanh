@@ -1,7 +1,7 @@
 package manager;
 
 import cammon.FuncWriteRead;
-import cammon.Validate;
+import cammon.ValidateService;
 import modle.House;
 import modle.Room;
 import modle.Villa;
@@ -45,7 +45,7 @@ public class ManagerService {
 //                    backToMenu();
                     break;
                 case 5:
-
+//                    Exit;
                     break;
                 default:
                     count++;
@@ -61,7 +61,7 @@ public class ManagerService {
         do {
             System.out.println("\tNhập id: ");
              id = scanner.nextLine();
-            if (Validate.validateId(id, "villa")) {
+            if (ValidateService.validateId(id, "villa")) {
                 break;
             } else {
                 System.err.println("Sai định dạng!!! Yêu cầu nhập lại:");
@@ -73,7 +73,7 @@ public class ManagerService {
         do {
             System.out.print("\tTên dịch vụ: ");
             tenDichVu = scanner.nextLine();
-            Validate validate =  new Validate();
+            ValidateService validate =  new ValidateService();
             if (!validate.validateServiceName(tenDichVu)) {
                 System.err.println("LỖI: Định dạng Tên Dịch Vụ không hợp lệ");
                 continue;
@@ -85,7 +85,7 @@ public class ManagerService {
         do {
             System.out.print("\tDiện tích sử dụng (m2): ");
             dienTichSD = (scanner.nextLine());
-            Validate validate = new Validate();
+            ValidateService validate = new ValidateService();
             if (!validate.validateArea(dienTichSD)) {
                 System.err.println("LỖI: Diện Tích Sử Dụng phải lớn hơn 30 (m2)");
                 continue;
@@ -97,7 +97,7 @@ public class ManagerService {
         do {
             System.out.print("\tNhập chi phí thuê ");
             chiPhiThue = (scanner.nextLine());
-            Validate validate = new Validate();
+            ValidateService validate = new ValidateService();
             if (!validate.validatePrice(chiPhiThue)) {
                 System.err.println("LỖI: Giá Tiền không hợp lệ");
                 continue;
@@ -109,7 +109,7 @@ public class ManagerService {
         do {
             System.out.print("\tSố người tối đa: ");
             soNguoiTD = (scanner.nextLine());
-            Validate validate =  new Validate();
+            ValidateService validate =  new ValidateService();
             if (!validate.validateMaxPeople(soNguoiTD)) {
                 System.err.println("LỖI: Số Người Tối Đa phải lớn hơn 0 và bé hơn 20");
                 continue;
@@ -121,15 +121,25 @@ public class ManagerService {
         do {
             System.out.print("\tNhập kiểu thuê: ");
             kieuThue = scanner.nextLine();
-            Validate validate =  new Validate();
+            ValidateService validate =  new ValidateService();
             if (!validate.validateRentleType(kieuThue)) {
                 System.err.println("LỖI: Định dạng Kiểu thuê không hợp lệ");
                 continue;
             }
             break;
         } while (true);
-        System.out.println("Nhập tiêu chuẩn phòng: ");
-        String tieuChuanPhong = scanner.nextLine();
+
+        String tieuChuanPhong = null;
+        do {
+            System.out.print("\tNhập tiêu chuẩn phòng: ");
+            tieuChuanPhong = scanner.nextLine();
+            ValidateService validate =  new ValidateService();
+            if (!validate.validateRoomStandard(tieuChuanPhong)) {
+                System.err.println("LỖI: Định dạng Tiêu chuẩn Phòng không hợp lệ");
+                continue;
+            }
+            break;
+        } while (true);
         System.out.println("Nhập tiện nghi khác: ");
         String tienNghiKhac = scanner.nextLine();
 
@@ -137,7 +147,7 @@ public class ManagerService {
         do {
             System.out.print("\tDiện tích Hồ bơi (m2): ");
             dienTichHoBoi  =(scanner.nextLine());
-            Validate validate = new Validate();
+            ValidateService validate = new ValidateService();
             if (!validate.validateSwimmingPool(dienTichHoBoi)) {
                 System.err.println("LỖI: Diện Tích Hồ bơi phải lớn hơn 30 (m2)");
                 continue;
@@ -149,7 +159,7 @@ public class ManagerService {
         do {
             System.out.print("\tSố tầng: ");
             soTang = (scanner.nextLine());
-            Validate validate = new Validate();
+            ValidateService validate = new ValidateService();
             if (!validate.validateFloors(soTang)) {
                 System.err.println("Lỗi!!! Số tầng phải lớn hơn 0:");
                 continue;
@@ -173,7 +183,7 @@ public class ManagerService {
         do {
             System.out.println("Nhập id: ");
             id = scanner.nextLine();
-            if (Validate.validateId(id, "house")) {
+            if (ValidateService.validateId(id, "house")) {
                 break;
             } else {
                 System.out.println("Sai định dạng!!! Yêu cầu nhập lại:");
@@ -206,13 +216,12 @@ public class ManagerService {
     // **********************************  addRoom  ************************************************
     public static void addRoom() {
         Scanner scanner = new Scanner(System.in);
-//        System.out.println("Nhập id: ");
-//        String id = scanner.nextLine();
+
         String id = null;
         do {
             System.out.println("Nhập id: ");
             id = scanner.nextLine();
-            if (Validate.validateId(id, "room")) {
+            if (ValidateService.validateId(id, "room")) {
                 break;
             } else {
                 System.out.println("Sai định dạng!!! Yêu cầu nhập lại:");
@@ -267,16 +276,20 @@ public static void showServices() {
                 count++;
                 break;
             case 4:
-                showAllNameVillaNotDuplicate();
+//                showAllNameVillaNotDuplicate();
                 break;
             case 5:
+//                Show All Name House Not Duplicate
                 count++;
                 break;
             case 6:
+//                Show All Name Name Not Duplicate
                 break;
             case 7:
+//                Back to menu
                 break;
             case 8:
+//                Exit;
                 break;
             default:
                 count++;
